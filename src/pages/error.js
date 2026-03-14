@@ -26,21 +26,25 @@ export const Error = () => {
           We're sorry. This page is unkown or does not exist the page you are
           looking for
         </p>
-        <button
+        <a
           style={{
             backgroundColor: "#4b6bfb",
             border: "none",
             borderRadius: "6px",
             color: "#fff",
             cursor: "pointer",
-            height: "36px",
+            height: "18px",
             padding: "10px 16px",
             width: "30%",
+            textDecoration: "none",
+            justifyContent: "center",
+            display: "flex",
+            alignItems: "center",
           }}
-          onClick={errorButton}
+          href="./"
         >
           Back To Home
-        </button>
+        </a>
       </div>
     </div>
   );
