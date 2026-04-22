@@ -3,15 +3,21 @@ import { SignIn } from "./pages/SignIn";
 import { Home } from "./pages/Home";
 import { SignUp } from "./pages/SignUp";
 import { Error } from "./pages/error";
+import { Contact } from "./pages/Contact";
+import { Blogs } from "./pages/Blogs";
+import { BlogPage } from "./pages/Blog";
 
 export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/sign-up" element={<SignUp />}></Route>
-        <Route path="/sign-in" element={<SignIn />}></Route>
-        <Route path="/404" element={<Error />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/404" element={<Error />} />
+        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs:id" element={<BlogPage />} />
       </Routes>
     </BrowserRouter>
   );

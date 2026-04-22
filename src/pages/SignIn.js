@@ -1,15 +1,32 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signInFunction } from "../firebase/Firebase";
 
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
+  const navigate = useNavigate;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (!email || !password) {
       alert("please fill the form out completely");
       return;
     } else {
       console.log(email, password);
+    }
+
+    try {
+      await signInFunction(email, password);
+
+      setEmail("");
+      setPassword("");
+
+      navigate("/");
+    } catch (error) {
+      console.error(error);
     }
   };
   return (

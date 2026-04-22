@@ -1,4 +1,12 @@
 import { initializeApp } from "firebase/app";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { collection, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -10,3 +18,23 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+
+export const signUp = (firstName, lastName, email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password).then(() => {
+    return updateProfile(auth.currentUser, {
+      displayName: `${firstName} ${lastName}`,
+    });
+  });
+};
+
+export const signInFunction = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutFunction = () => {
+  return signOut(auth);
+};
+
+export const database = getFirestore(app);
+export const blogsCollection = collection(database, "blogs");

@@ -1,4 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { TextField } from "../components/TextField";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../components/Button";
+import { signUp } from "../firebase/Firebase";
 
 export const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -6,14 +10,30 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (!firstName || !lastName || !email || !password) {
-      alert("fill the sign up fully please");
+      alert("fill out the form completely");
       return;
-    } else {
-      console.log(firstName, lastName, email, password);
+    }
+
+    try {
+      await signUp(firstName, lastName, email, password);
+
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+
+      navigate("/");
+    } catch (error) {
+      console.error(error);
     }
   };
+
   return (
     <div
       style={{
@@ -36,72 +56,37 @@ export const SignUp = () => {
         }}
       >
         <h1>Sign Up</h1>
-        <input
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            padding: "10px",
-          }}
+        <TextField
           type="text"
           placeholder="First Name"
-          onChange={(e) => setFirstName(e.target.value)}
           value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
         />
-        <input
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            padding: "10px",
-          }}
+        <TextField
           type="text"
           placeholder="Last Name"
-          onChange={(e) => setLastName(e.target.value)}
           value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
         />
-        <input
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            padding: "10px",
-          }}
+        <TextField
           type="email"
           placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
           value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          style={{
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            padding: "10px",
-          }}
+        <TextField
           type="password"
           placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
           value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button
-          style={{
-            backgroundColor: "#4b6bfb",
-            border: "none",
-            borderRadius: "6px",
-            color: "#fff",
-            cursor: "pointer",
-            height: "36px",
-            padding: "10px 16px",
-            width: "100%",
-          }}
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Sign up
-        </button>
-        <a
+        <Button onClick={handleSubmit}> Sign up</Button>
+        <Link
           style={{ textDecoration: "none", color: "black", fontSize: "14px" }}
-          href="/sign-in"
+          to="/sign-in"
         >
           Already have an account?
-        </a>
+        </Link>
       </form>
     </div>
   );

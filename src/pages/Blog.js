@@ -1,0 +1,109 @@
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Header } from "../components/header/Header";
+import { Button } from "../components/Button";
+import { useBlogContext } from "../context/BlogContext";
+import { UpdateBlogModal } from "../components/UpdateBlogModal";
+import { doc, deleteDoc } from "firebase/firestore";
+import { blogsCollection } from "../firebase/Firebase";
+
+export const BlogPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { blogs, blogsLoading } = useBlogContext();
+  const [openUpdate, setOpenUpdate] = useState(false);
+
+  const singleBlog = blogs.find((blog) => blog.blogId === id);
+
+  const handleOpenUdate = () => setOpenUpdate(true);
+  const handleCloseUpdate = () => setOpenUpdate(false);
+
+  const handleDelete = async () => {
+    const blogRef = doc(blogsCollection, id);
+    await deleteDoc(blogRef);
+    navigate("/");
+  };
+
+  if (blogsLoading) return <div>Loading...</div>;
+  if (!blogsLoading && !singleBlog) return null;
+
+  return (
+    <div
+      style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Header />
+
+      <div
+        style={{
+          maxWidth: "800px",
+          minWidth: 800,
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          marginBottom: "100px",
+        }}
+      >
+        <h1
+          style={{
+            display: "flex",
+            gap: 20,
+            width: "100%",
+            alignItems: "center",
+          }}
+        >
+          {singleBlog.title}
+        </h1>
+        <div
+          style={{
+            display: "flex",
+            gap: 20,
+            width: "100%",
+            alignItems: "center",
+          }}
+        >
+          <p>
+            {singleBlog.createdAt.toDate().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
+        </div>
+        <img
+          src={
+            singleBlog.imageURL || "https://picsum.photos/seed/picsum/536/354"
+          }
+          width={800}
+          alt={singleBlog.title}
+        />
+
+        <p style={{ marginTop: 40 }}>{singleBlog.content}</p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: 40,
+          }}
+        >
+          <Button style={{ width: 120 }} onClick={handleOpenUdate}>
+            Update
+          </Button>
+          <Button style={{ width: 120 }} onClick={handleDelete}>
+            Delete
+          </Button>
+        </div>
+
+        <UpdateBlogModal
+          open={openUpdate}
+          handleClose={handleCloseUpdate}
+          blog={singleBlog}
+        />
+      </div>
+    </div>
+  );
+};
