@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Header } from "../components/header/Header";
+import { Header } from "../components/Header";
 import { Button } from "../components/Button";
 import { useBlogContext } from "../context/BlogContext";
 import { UpdateBlogModal } from "../components/UpdateBlogModal";
 import { doc, deleteDoc } from "firebase/firestore";
 import { blogsCollection } from "../firebase/Firebase";
+import { DeleteBlogModal } from "../components/DeleteBlogModal";
 
 export const BlogPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { blogs, blogsLoading } = useBlogContext();
+
   const [openUpdate, setOpenUpdate] = useState(false);
 
   const singleBlog = blogs.find((blog) => blog.blogId === id);
@@ -18,11 +20,9 @@ export const BlogPage = () => {
   const handleOpenUdate = () => setOpenUpdate(true);
   const handleCloseUpdate = () => setOpenUpdate(false);
 
-  const handleDelete = async () => {
-    const blogRef = doc(blogsCollection, id);
-    await deleteDoc(blogRef);
-    navigate("/");
-  };
+  const [openDelete, setOpenDelete] = useState(false);
+  const handleOpenDelete = () => setOpenDelete(true);
+  const handleCloseDelete = () => setOpenDelete(false);
 
   if (blogsLoading) return <div>Loading...</div>;
   if (!blogsLoading && !singleBlog) return null;
@@ -93,7 +93,7 @@ export const BlogPage = () => {
           <Button style={{ width: 120 }} onClick={handleOpenUdate}>
             Update
           </Button>
-          <Button style={{ width: 120 }} onClick={handleDelete}>
+          <Button style={{ width: 120 }} onClick={handleOpenDelete}>
             Delete
           </Button>
         </div>
@@ -101,6 +101,12 @@ export const BlogPage = () => {
         <UpdateBlogModal
           open={openUpdate}
           handleClose={handleCloseUpdate}
+          blog={singleBlog}
+        />
+
+        <DeleteBlogModal
+          open={openDelete}
+          handleClose={handleCloseDelete}
           blog={singleBlog}
         />
       </div>

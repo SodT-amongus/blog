@@ -2,11 +2,20 @@ import { useUserContext } from "../context/UserContext";
 import { Button } from "../components/Button";
 import { signOutFunction } from "../firebase/Firebase";
 import { Link } from "react-router-dom";
-import { Header } from "../components/header/Header";
+import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { useState } from "react";
+import { useBlogContext } from "../context/BlogContext";
+import ArrowBackIosNewIcon from "@mui/material";
+import ArrowForwardIosIcon from "@mui/material";
+import { SlideCard } from "../components/SlideCard";
+import { TrendingCard } from "../components/TrendingCard";
 
 export const Home = () => {
   const { currentUser } = useUserContext();
+  const { blogs } = useBlogContext();
+
+  const [slideCount, setSlideCount] = useState(0);
 
   return (
     <div>
@@ -87,77 +96,10 @@ export const Home = () => {
             </div>
           </div>
           <div>
-            <button></button>
+            <SlideCard />
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 20,
-            margin: "50px 0",
-            padding: "0 280px",
-          }}
-        >
-          <h2 style={{ margin: 0 }}>Trending</h2>
-          <div style={{ display: "flex", gap: 20 }}>
-            <div>
-              <div style={{ position: "relative", cursor: "pointer" }}>
-                <div
-                  style={{
-                    position: "relative",
-                    width: 280,
-                    height: 320,
-                    borderRadius: 12,
-                    backgroundPosition: "center center",
-                    backgroundSize: "cover",
-                    filter: "brightness(60%)",
-                    backgroundImage:
-                      "url(https://res.cloudinary.com/db4h6fyq3/image/upload/v1734971148/leap/brqpnc7xhso0yf8htrlm.png)",
-                  }}
-                ></div>
-                <div
-                  style={{
-                    color: "white",
-                    position: "absolute",
-                    left: 25,
-                    top: 200,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 20,
-                    width: 230,
-                  }}
-                >
-                  <div>
-                    <span
-                      style={{
-                        backgroundColor: "rgb(75, 107, 251)",
-                        borderRadius: 6,
-                        padding: "4px 10px",
-                      }}
-                    >
-                      Technology
-                    </span>
-                  </div>
-                  <div style={{ height: 70, overflow: "hidden" }}>
-                    <h2
-                      style={{
-                        fontSize: 18,
-                        overflow: "hidden",
-                        display: "-webkit-box",
-                        MozBoxOrient: "vertical",
-                        WebkitLineClamp: 2,
-                      }}
-                    >
-                      The Impact of Technology on the Workplace: How Technology
-                      is Changing
-                    </h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TrendingCard />
       </div>
       <Footer></Footer>
     </div>

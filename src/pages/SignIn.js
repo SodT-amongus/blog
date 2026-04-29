@@ -5,6 +5,7 @@ import { signInFunction } from "../firebase/Firebase";
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate;
 
@@ -27,6 +28,7 @@ export const SignIn = () => {
       navigate("/");
     } catch (error) {
       console.error(error);
+      setError(error.message);
     }
   };
   return (
@@ -51,6 +53,7 @@ export const SignIn = () => {
         }}
       >
         <h1>Sign in</h1>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <input
           style={{
             border: "1px solid #ccc",

@@ -3,7 +3,7 @@ import { Button } from "../components/Button";
 import { BlogCard } from "../components/BlogCard";
 import { CreateBlogModal } from "../components/CreateBlogModal";
 import { useBlogContext } from "../context/BlogContext";
-import { Header } from "../components/header/Header";
+import { Header } from "../components/Header";
 
 export const Blogs = () => {
   const [openBlog, setOpenBlog] = useState(false);

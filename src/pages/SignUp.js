@@ -9,6 +9,7 @@ export const SignUp = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -56,6 +57,7 @@ export const SignUp = () => {
         }}
       >
         <h1>Sign Up</h1>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <TextField
           type="text"
           placeholder="First Name"

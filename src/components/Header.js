@@ -8,12 +8,13 @@ import {
   menuItem,
   Tooltip,
 } from "@mui/material";
-import { useUserContext } from "../../context/UserContext";
-import { signOutFunction } from "../../firebase/Firebase";
+import { useUserContext } from "../context/UserContext";
+import { signOutFunction } from "../firebase/Firebase";
+import { HeaderLogo } from "../assets/HeaderLogo";
 
 export const Header = () => {
   const { currentUser } = useUserContext();
-  const { anchorEl, setAnchorEl } = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const navigate = useNavigate();
@@ -25,13 +26,15 @@ export const Header = () => {
   return (
     <div
       style={{
-        height: 100,
+        height: "100px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
       }}
     >
-      <Link to="/">Logo</Link>
+      <Link to="/">
+        <HeaderLogo />
+      </Link>
 
       <div style={{ display: "flex", gap: 30 }}>
         <Link to="/" style={{ textDecoration: "none", color: "#3B3C4A" }}>

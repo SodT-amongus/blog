@@ -16,7 +16,6 @@ const style = {
   p: 4,
   display: "flex",
   flexDirection: "column",
-  gap: 10,
 };
 
 export const UpdateBlogModal = (props) => {
@@ -34,8 +33,7 @@ export const UpdateBlogModal = (props) => {
       !blogData.description ||
       !blogData.content ||
       !blogData.tag ||
-      !blogData.createdAt ||
-      !blogData.updatedAt
+      !blogData.createdAt
     ) {
       alert("please fill out all fields");
       return;
@@ -62,6 +60,7 @@ export const UpdateBlogModal = (props) => {
       <Box sx={style}>
         <h3>Update Blog</h3>
 
+        <h4>Title:</h4>
         <TextField
           type="text"
           name="title"
@@ -69,6 +68,7 @@ export const UpdateBlogModal = (props) => {
           value={blogData.title}
           onChange={handleChange}
         />
+        <h4>Description:</h4>
         <TextField
           type="text"
           name="description"
@@ -76,6 +76,7 @@ export const UpdateBlogModal = (props) => {
           value={blogData.description}
           onChange={handleChange}
         />
+        <h4>Content:</h4>
         <TextField
           type="text"
           name="content"
@@ -83,6 +84,16 @@ export const UpdateBlogModal = (props) => {
           value={blogData.content}
           onChange={handleChange}
         />
+        <h4>Tag:</h4>
+        <div style={{ paddingBottom: 20 }}>
+          <TextField
+            type="text"
+            name="tag"
+            placeholder="Tag..."
+            value={blogData.tag}
+            onChange={handleChange}
+          />
+        </div>
         <Button onClick={handleSubmit}>Update Blog</Button>
       </Box>
     </Modal>
