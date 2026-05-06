@@ -10,6 +10,8 @@ import ArrowBackIosNewIcon from "@mui/material";
 import ArrowForwardIosIcon from "@mui/material";
 import { SlideCard } from "../components/SlideCard";
 import { TrendingCard } from "../components/TrendingCard";
+import { TrendingSection } from "../components/TrendingSection";
+import { AllBlogPosts } from "../components/AllBlogPosts";
 
 export const Home = () => {
   const { currentUser } = useUserContext();
@@ -19,7 +21,7 @@ export const Home = () => {
 
   return (
     <div>
-      <Header></Header>
+      <Header />
       <div
         style={{
           display: "flex",
@@ -99,7 +101,8 @@ export const Home = () => {
             <SlideCard />
           </div>
         </div>
-        <TrendingCard />
+        <TrendingSection />
+        <AllBlogPosts />
       </div>
       <Footer></Footer>
     </div>

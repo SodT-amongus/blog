@@ -1,17 +1,23 @@
 import { BlogContextProvider } from "../context/BlogContext";
 import { blogsCollection } from "../firebase/Firebase";
 import { useNavigate } from "react-router-dom";
+import { useBlogContext } from "../context/BlogContext";
 
-export const TrendingCard = (props) => {
+export const TrendingCard = ({ blog }) => {
+  const navigate = useNavigate();
+
   return (
-    <div>
+    <div
+      style={{ position: "relative", cursor: "pointer" }}
+      onClick={() => navigate(`/blogs/${blog.blogId}`)}
+    >
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           gap: 20,
           margin: "50px 0",
-          padding: "0 280px",
+          paddingRight: 35,
         }}
       >
         <h2 style={{ margin: 0 }}></h2>
@@ -27,8 +33,9 @@ export const TrendingCard = (props) => {
                   backgroundPosition: "center center",
                   backgroundSize: "cover",
                   filter: "brightness(60%)",
-                  backgroundImage:
-                    "url(https://res.cloudinary.com/db4h6fyq3/image/upload/v1734971148/leap/brqpnc7xhso0yf8htrlm.png)",
+                  backgroundImage: `url(${
+                    blog.imageURL || "https://picsum.photos/seed/picsum/536/354"
+                  })`,
                 }}
               >
                 {/* {blog.title} */}
@@ -53,7 +60,7 @@ export const TrendingCard = (props) => {
                       padding: "4px 10px",
                     }}
                   >
-                    {/* {blog.tag} */}
+                    {blog.tag}
                   </span>
                 </div>
                 <div style={{ height: 70, overflow: "hidden" }}>
@@ -66,7 +73,7 @@ export const TrendingCard = (props) => {
                       WebkitLineClamp: 2,
                     }}
                   >
-                    {/* {blog.description} */}
+                    {blog.description}
                   </h2>
                 </div>
               </div>

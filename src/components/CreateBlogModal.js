@@ -1,9 +1,10 @@
+import { Box, MenuItem, Modal, Select, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Button } from "./Button";
-import { Box, Modal, Typography, Select, Stack, MenuItem } from "@mui/material";
 import { TextField } from "./TextField";
 import { addDoc, serverTimestamp } from "firebase/firestore";
 import { blogsCollection } from "../firebase/Firebase";
+import { uploadImage } from "../cloudinary";
 
 const style = {
   position: "absolute",
@@ -23,18 +24,22 @@ export const CreateBlogModal = (props) => {
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [tag, setTag] = useState("");
+  const [file, setFile] = useState();
 
   const handleSubmit = async () => {
     if (!title || !description || !content || !tag) {
-      alert("please fill out all fields");
+      alert("Please fill out all the fields!");
       return;
     }
+
+    const imageURL = await uploadImage(file);
 
     await addDoc(blogsCollection, {
       title: title,
       description: description,
       content: content,
       tag: tag,
+      imageURL: imageURL,
       createdAt: serverTimestamp(),
     });
 
@@ -42,6 +47,7 @@ export const CreateBlogModal = (props) => {
     setDescription("");
     setContent("");
     setTag("");
+    setFile();
 
     handleClose();
   };
@@ -60,12 +66,14 @@ export const CreateBlogModal = (props) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+
           <TextField
             placeholder="Description..."
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+
           <TextField
             placeholder="Content..."
             type="text"
@@ -73,13 +81,22 @@ export const CreateBlogModal = (props) => {
             onChange={(e) => setContent(e.target.value)}
           />
 
-          <Select value={tag} onChange={(e) => setTag(e.target.value)}>
+          <Select
+            value={tag}
+            onChange={(e) => setTag(e.target.value)}
+            sx={{
+              height: "37px",
+              borderRadius: "8px",
+              fontSize: "14px",
+            }}
+            displayEmpty
+          >
             <MenuItem value="">Choose Tag</MenuItem>
             <MenuItem value="technology">Technology</MenuItem>
             <MenuItem value="art">Art</MenuItem>
           </Select>
 
-          <input type="file" />
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
 
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Button onClick={handleClose}>Cancel</Button>

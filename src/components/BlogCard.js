@@ -9,7 +9,7 @@ export const BlogCard = (props) => {
     <div
       onClick={() => navigate(`/blogs/${blog.blogId}`)}
       style={{
-        width: 340,
+        width: 300,
         height: 460,
         padding: 20,
         borderRadius: 12,
@@ -20,22 +20,25 @@ export const BlogCard = (props) => {
         cursor: "pointer",
       }}
     >
-      <img
+      <div
         style={{
           height: 240,
-          width: 340,
+          width: 300,
           border: "1px solid rgb(232, 232, 234)",
           borderRadius: 6,
+          backgroundImage: `url(${
+            blog.imageURL || "https://picsum.photos/seed/picsum/536/354"
+          })`,
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
         }}
-        src="https://res.cloudinary.com/db4h6fyq3/image/upload/v1734971148/leap/brqpnc7xhso0yf8htrlm.png"
-        alt="car"
-      ></img>
+      ></div>
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           paddingTop: 20,
-          gap: 20,
+          gap: 10,
         }}
       >
         <div>
