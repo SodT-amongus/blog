@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button } from "../components/Button";
 import { DeleteBlogModal } from "../components/DeleteBlogModal";
 import { Header } from "../components/Header";
@@ -9,7 +9,6 @@ import { useUserContext } from "../context/UserContext";
 
 export const BlogPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const { blogs, blogsLoading } = useBlogContext();
 
   const [openUpdate, setOpenUpdate] = useState(false);

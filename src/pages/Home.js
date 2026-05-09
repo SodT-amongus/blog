@@ -1,18 +1,10 @@
-import { useState } from "react";
 import { AllBlogPosts } from "../components/AllBlogPosts";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { SlideCard } from "../components/SlideCard";
 import { TrendingSection } from "../components/TrendingSection";
-import { useBlogContext } from "../context/BlogContext";
-import { useUserContext } from "../context/UserContext";
 
 export const Home = () => {
-  const { currentUser } = useUserContext();
-  const { blogs } = useBlogContext();
-
-  const [slideCount, setSlideCount] = useState(0);
-
   return (
     <div>
       <Header />
