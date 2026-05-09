@@ -17,7 +17,6 @@ export const TrendingCard = ({ blog }) => {
           paddingRight: 35,
         }}
       >
-        <h2 style={{ margin: 0 }}></h2>
         <div style={{ display: "flex", gap: 20 }}>
           <div>
             <div style={{ position: "relative", cursor: "pointer" }}>

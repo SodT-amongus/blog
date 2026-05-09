@@ -10,7 +10,6 @@ import { useUserContext } from "../context/UserContext";
 
 export const Blogs = () => {
   const [openBlog, setOpenBlog] = useState(false);
-  const handleOpenBlog = () => setOpenBlog(true);
   const handleCloseBlog = () => setOpenBlog(false);
   const { currentUser } = useUserContext();
 

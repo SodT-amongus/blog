@@ -31,7 +31,7 @@ export const SignUp = () => {
 
       navigate("/");
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     }
   };
 
