@@ -38,3 +38,4 @@ export const signOutFunction = () => {
 
 export const database = getFirestore(app);
 export const blogsCollection = collection(database, "blogs");
+export const messagesCollection = collection(database, "messages");

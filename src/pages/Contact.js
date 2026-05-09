@@ -1,7 +1,40 @@
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { Button } from "../components/Button";
+import { messagesCollection } from "../firebase/Firebase";
+import { addDoc, serverTimestamp } from "firebase/firestore";
+import { useState } from "react";
 
 export const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!name || !email || !subject || !message) {
+      alert("Please fill out all fields");
+      return;
+    }
+
+    setLoading(true);
+    await addDoc(messagesCollection, {
+      name,
+      email,
+      subject,
+      message,
+      createdAt: serverTimestamp(),
+    });
+    setLoading(false);
+
+    setName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
+    alert("Message has been sent");
+  };
+
   return (
     <div id="root">
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -84,7 +117,9 @@ export const Contact = () => {
                     borderRadius: 10,
                     border: "1px solid gray",
                   }}
-                ></input>
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
                 <input
                   placeholder="Your email"
                   style={{
@@ -94,7 +129,9 @@ export const Contact = () => {
                     border: "1px solid gray",
                     borderRadius: 13,
                   }}
-                ></input>
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
               <input
                 placeholder="Subject"
@@ -103,24 +140,19 @@ export const Contact = () => {
                   border: "1px solid gray",
                   borderRadius: 10,
                 }}
-              ></input>
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+              />
               <textarea
                 placeholder="Write a message"
                 rows={6}
                 style={{ borderRadius: 10, padding: 16 }}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               ></textarea>
-              <button
-                style={{
-                  height: 36,
-                  width: 140,
-                  color: "white",
-                  backgroundColor: "rgb(75, 107, 251)",
-                  border: "medium",
-                  borderRadius: 8,
-                }}
-              >
-                Send Message
-              </button>
+              <Button onClick={handleSubmit} disabled={loading}>
+                {loading ? "Loading" : "Send Message"}
+              </Button>
             </div>
           </div>
         </div>

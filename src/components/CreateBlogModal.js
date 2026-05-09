@@ -5,6 +5,8 @@ import { TextField } from "./TextField";
 import { addDoc, serverTimestamp } from "firebase/firestore";
 import { blogsCollection } from "../firebase/Firebase";
 import { uploadImage } from "../cloudinary";
+import { useUserContext } from "../context/UserContext";
+import { NotLoggedIn } from "./NotLogged";
 
 const style = {
   position: "absolute",
@@ -19,6 +21,9 @@ const style = {
 
 export const CreateBlogModal = (props) => {
   const { open, handleClose } = props;
+
+  const { currentUser } = useUserContext();
+  console.log(currentUser);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -41,6 +46,7 @@ export const CreateBlogModal = (props) => {
       tag: tag,
       imageURL: imageURL,
       createdAt: serverTimestamp(),
+      userId: currentUser.uid,
     });
 
     setTitle("");

@@ -7,6 +7,7 @@ import { UpdateBlogModal } from "../components/UpdateBlogModal";
 import { doc, deleteDoc } from "firebase/firestore";
 import { blogsCollection } from "../firebase/Firebase";
 import { DeleteBlogModal } from "../components/DeleteBlogModal";
+import { useUserContext } from "../context/UserContext";
 
 export const BlogPage = () => {
   const { id } = useParams();
@@ -15,7 +16,9 @@ export const BlogPage = () => {
 
   const [openUpdate, setOpenUpdate] = useState(false);
 
+  const { currentUser } = useUserContext();
   const singleBlog = blogs.find((blog) => blog.blogId === id);
+  const isOwner = currentUser && singleBlog.userId === currentUser.uid;
 
   const handleOpenUdate = () => setOpenUpdate(true);
   const handleCloseUpdate = () => setOpenUpdate(false);
@@ -90,12 +93,22 @@ export const BlogPage = () => {
             marginTop: 40,
           }}
         >
-          <Button style={{ width: 120 }} onClick={handleOpenUdate}>
-            Update
-          </Button>
-          <Button style={{ width: 120 }} onClick={handleOpenDelete}>
-            Delete
-          </Button>
+          {isOwner && (
+            <div
+              style={{
+                display: "flex",
+                marginTop: 40,
+                gap: 20,
+              }}
+            >
+              <Button style={{ width: 120 }} onClick={handleOpenUdate}>
+                Update
+              </Button>
+              <Button style={{ width: 120 }} onClick={handleOpenDelete}>
+                Delete
+              </Button>
+            </div>
+          )}
         </div>
 
         <UpdateBlogModal

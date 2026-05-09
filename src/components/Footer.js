@@ -1,6 +1,8 @@
 export const Footer = () => {
   return (
-    <div style={{ backgroundColor: "#f6f6f7", padding: "60px 0" }}>
+    <div
+      style={{ backgroundColor: "#f6f6f7", padding: "60px 0", marginTop: 50 }}
+    >
       <div
         style={{
           display: "flex",

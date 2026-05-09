@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Avatar,
-  IconButton,
-  Menu,
-  MenuItem,
-  menuItem,
-  Tooltip,
-} from "@mui/material";
+import { Avatar, IconButton, Menu, MenuItem, Tooltip } from "@mui/material";
 import { useUserContext } from "../context/UserContext";
 import { signOutFunction } from "../firebase/Firebase";
 import { HeaderLogo } from "../assets/HeaderLogo";
@@ -30,6 +23,7 @@ export const Header = () => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        padding: "0 40px",
       }}
     >
       <Link to="/">
