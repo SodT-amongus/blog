@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Button } from "../components/Button";
+import { useState } from "react";
 import { BlogCard } from "../components/BlogCard";
+import { Button } from "../components/Button";
 import { CreateBlogModal } from "../components/CreateBlogModal";
-import { useBlogContext } from "../context/BlogContext";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { NotLoggedIn } from "../components/NotLogged";
+import { useBlogContext } from "../context/BlogContext";
 import { useUserContext } from "../context/UserContext";
-import { Footer } from "../components/Footer";
 
 export const Blogs = () => {
   const [openBlog, setOpenBlog] = useState(false);

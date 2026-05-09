@@ -1,12 +1,11 @@
 import { Box, MenuItem, Modal, Select, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { Button } from "./Button";
-import { TextField } from "./TextField";
 import { addDoc, serverTimestamp } from "firebase/firestore";
-import { blogsCollection } from "../firebase/Firebase";
+import { useState } from "react";
 import { uploadImage } from "../cloudinary";
 import { useUserContext } from "../context/UserContext";
-import { NotLoggedIn } from "./NotLogged";
+import { blogsCollection } from "../firebase/Firebase";
+import { Button } from "./Button";
+import { TextField } from "./TextField";
 
 const style = {
   position: "absolute",

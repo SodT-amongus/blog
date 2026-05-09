@@ -1,9 +1,6 @@
-import { Box, MenuItem, Modal, Select, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { Button } from "./Button";
-import { TextField } from "./TextField";
-import { useUserContext } from "../context/UserContext";
+import { Box, Modal, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Button } from "./Button";
 
 const style = {
   position: "absolute",

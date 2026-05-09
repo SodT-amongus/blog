@@ -1,7 +1,4 @@
-import { BlogContextProvider } from "../context/BlogContext";
-import { blogsCollection } from "../firebase/Firebase";
 import { useNavigate } from "react-router-dom";
-import { useBlogContext } from "../context/BlogContext";
 
 export const TrendingCard = ({ blog }) => {
   const navigate = useNavigate();

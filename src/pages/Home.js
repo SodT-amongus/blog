@@ -1,17 +1,11 @@
-import { useUserContext } from "../context/UserContext";
-import { Button } from "../components/Button";
-import { signOutFunction } from "../firebase/Firebase";
-import { Link } from "react-router-dom";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 import { useState } from "react";
-import { useBlogContext } from "../context/BlogContext";
-import ArrowBackIosNewIcon from "@mui/material";
-import ArrowForwardIosIcon from "@mui/material";
-import { SlideCard } from "../components/SlideCard";
-import { TrendingCard } from "../components/TrendingCard";
-import { TrendingSection } from "../components/TrendingSection";
 import { AllBlogPosts } from "../components/AllBlogPosts";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
+import { SlideCard } from "../components/SlideCard";
+import { TrendingSection } from "../components/TrendingSection";
+import { useBlogContext } from "../context/BlogContext";
+import { useUserContext } from "../context/UserContext";
 
 export const Home = () => {
   const { currentUser } = useUserContext();

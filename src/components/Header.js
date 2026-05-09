@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { Avatar, IconButton, Menu, MenuItem, Tooltip } from "@mui/material";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { HeaderLogo } from "../assets/HeaderLogo";
 import { useUserContext } from "../context/UserContext";
 import { signOutFunction } from "../firebase/Firebase";
-import { HeaderLogo } from "../assets/HeaderLogo";
 
 export const Header = () => {
   const { currentUser } = useUserContext();

@@ -1,5 +1,3 @@
-import React from "react";
-
 export const SlideCard = (props) => {
   const { blog } = props;
 

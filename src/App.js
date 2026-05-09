@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { SignIn } from "./pages/SignIn";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BlogPage } from "./pages/Blog";
+import { Blogs } from "./pages/Blogs";
+import { Contact } from "./pages/Contact";
 import { Home } from "./pages/Home";
+import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Error } from "./pages/error";
-import { Contact } from "./pages/Contact";
-import { Blogs } from "./pages/Blogs";
-import { BlogPage } from "./pages/Blog";
 
 export const App = () => {
   return (

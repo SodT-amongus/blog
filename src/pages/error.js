@@ -1,6 +1,4 @@
 export const Error = () => {
-  const errorButton = () => {};
-
   return (
     <div
       style={{

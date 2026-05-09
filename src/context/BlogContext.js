@@ -1,4 +1,4 @@
-import { collection, onSnapshot } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 import { blogsCollection } from "../firebase/Firebase";
 

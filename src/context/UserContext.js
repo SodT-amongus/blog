@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { createContext, useEffect, useState, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/Firebase";
 
 const UserContext = createContext();
@@ -10,7 +10,6 @@ export const UserContentProvider = (props) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  //useEffect hook
   useEffect(() => {
     const getUser = onAuthStateChanged(auth, (userInfo) => {
       if (userInfo) {

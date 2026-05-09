@@ -1,9 +1,9 @@
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import { Button } from "../components/Button";
-import { messagesCollection } from "../firebase/Firebase";
 import { addDoc, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
+import { Button } from "../components/Button";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
+import { messagesCollection } from "../firebase/Firebase";
 
 export const Contact = () => {
   const [name, setName] = useState("");

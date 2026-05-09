@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Header } from "../components/Header";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/Button";
-import { useBlogContext } from "../context/BlogContext";
-import { UpdateBlogModal } from "../components/UpdateBlogModal";
-import { doc, deleteDoc } from "firebase/firestore";
-import { blogsCollection } from "../firebase/Firebase";
 import { DeleteBlogModal } from "../components/DeleteBlogModal";
+import { Header } from "../components/Header";
+import { UpdateBlogModal } from "../components/UpdateBlogModal";
+import { useBlogContext } from "../context/BlogContext";
 import { useUserContext } from "../context/UserContext";
 
 export const BlogPage = () => {

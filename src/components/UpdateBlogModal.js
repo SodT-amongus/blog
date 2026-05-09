@@ -1,9 +1,9 @@
 import { Box, Modal } from "@mui/material";
-import React, { useState } from "react";
+import { deleteDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useState } from "react";
+import { blogsCollection } from "../firebase/Firebase";
 import { Button } from "./Button";
 import { TextField } from "./TextField";
-import { blogsCollection } from "../firebase/Firebase";
-import { setDoc, doc, deleteDoc, serverTimestamp } from "firebase/firestore";
 
 const style = {
   position: "absolute",

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { BlogCard } from "./BlogCard";
+import { useState } from "react";
 import { useBlogContext } from "../context/BlogContext";
+import { BlogCard } from "./BlogCard";
 
 export const AllBlogPosts = () => {
   const { blogs, blogsLoading } = useBlogContext();
